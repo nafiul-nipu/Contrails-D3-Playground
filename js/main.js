@@ -24,7 +24,7 @@ d3.csv("data/mixingLine.csv", data =>{
 	mixingData.temperature.push((parseFloat(data['temperature'])));
 	mixingData.pressure.push((parseFloat(data['pressure'])));
 }).then(function(){
-	// console.log(mixingData)
+	console.log(d3.extent(mixingData.temperature))
 
 	xVal = d3.scaleLinear()
 			.domain(d3.extent(mixingData.temperature))
@@ -103,12 +103,12 @@ d3.csv('data/saturationCurve.csv', data => {
 	let satIce = d3.line()
 					.x(p => xVal(p.temp))
 					.y(p => yVal(p.ice))
-					.curve(d3.curveCardinal)
+					// .curve(d3.curveCardinal)
 
 	let satWater = d3.line()
 					.x(p => xVal(p.temp))
 					.y(p => yVal(p.water))
-					.curve(d3.curveCardinal)
+					// .curve(d3.curveCardinal)
 
 	let iceSatCurve = g.append('g')
 						.append('path')
