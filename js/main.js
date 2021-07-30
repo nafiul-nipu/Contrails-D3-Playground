@@ -75,7 +75,7 @@ d3.csv("data/mixingLine.csv", data =>{
 						.attr('cx', function(d, i){ 
 							return xVal(d)})
 						.attr('cy', function(d,i){ return yVal(mixingData.pressure[i])})
-						.attr('r', 0.75)
+						.attr('r', 1.5)
 						.style("fill", 'black')
 })
 
