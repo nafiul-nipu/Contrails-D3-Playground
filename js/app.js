@@ -83,7 +83,7 @@ function createStreamGraph(data){
 
       // Add Y axis
     var y = d3.scaleLinear()
-    .domain([-100000, 100000])
+    .domain([-3500, 3500])
     .range([ h, 0 ]);
 
     // color palette
