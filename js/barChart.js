@@ -60,16 +60,23 @@ function createMultipleBars(files){
 
      let h = height - margin.top - margin.bottom
 
-     let x0 = d3.scaleBand().domain(time).rangeRound([0, w]).padding(0.01)
+     let x0 = d3.scaleBand().domain(time).rangeRound([2, w]).padding(0.1)
 
-     let x1 = d3.scaleBand().domain(attributes).rangeRound([0, x0.bandwidth()])
+     let x1 = d3.scaleBand().domain(attributes).rangeRound([1, x0.bandwidth()])
 
-     let y = d3.scaleLinear().range([h-margin.top, 0])
+     
 
      let xAxis = d3.axisBottom()
                     .scale(x0)
 
-    let yAxis = d3.axisLeft().scale(y)
+    let yScale = d3.scaleBand()
+    .domain(["Contrails 1", "Contrails 2", "Contrails 3"])
+    .range([0, h])
+    let yAxis = d3.axisLeft()
+        .scale(yScale)
+
+
+    
 
     let color = d3.scaleOrdinal()
                 .range(d3.schemeAccent);;
@@ -86,94 +93,88 @@ function createMultipleBars(files){
         .attr("transform", "translate(0," + h + ")")
         .call(xAxis);
 
-    // svg.append("g")
-    //     .attr("class", "y axis")
-    //     .style('opacity','0')
-    //     .call(yAxis)
-
-    let bars = svg.selectAll('bars')
-                    .data(data[0])
-                    .enter()
-                    .append('g')
-                    .attr('class', 'g')
-                    .attr("transform",function(d,i) { 
-                        // console.log(d)
-                        return "translate(" + x0(d.Timesteps) + ",0)"; });
-
-    console.log(attributes)
-
-    var tool_tip = d3.tip()
-      .attr("class", "d3-tip")
-      .direction('e')
-      .html(function(d) { return `
-        Attrbute: ${d.attribute} <br> 
-        Value: ${d.value}`});
-    svg.call(tool_tip);
-
-    bars.selectAll("rect")
-            .data(function(d){
-                // console.log(d.attributes)
-                return d.attributes})
-        .enter().append("rect")
-            .attr("width", x1.bandwidth())
-            .attr("x", function(d,i) { 
-                // console.log(d.attribute, x1(d.attribute))
-                return x1(d.attribute); })
-            .style("fill", function(d) { return color(d.attribute) })
-            .attr("y", function(d) { 
-                if(d.attribute == 'TotalParticles'){
-                    y.domain([TotalParticlesDomain.min, TotalParticlesDomain.max])
-                }else if(d.attribute == 'IceVolume'){
-                    y.domain([iceVolumeDomain.min, iceVolumeDomain.max])
-                }else if(d.attribute == 'Temp'){
-                    y.domain([TempDomain.min, TempDomain.max])
-                }else if(d.attribute == 'NewIce'){
-                    y.domain([newIcePercentageDomain.min, newIcePercentageDomain.max])
-                }else if(d.attribute == 'Ice'){
-                    y.domain([TotalIcePercentageDomain.min, TotalIcePercentageDomain.max])
-                }
-                return y(d.value); })
-            .attr("height", function(d) { 
-                
-                if(d.attribute == 'TotalParticles'){
-                    y.domain([TotalParticlesDomain.min, TotalParticlesDomain.max])
-                }else if(d.attribute == 'IceVolume'){
-                    y.domain([iceVolumeDomain.min, iceVolumeDomain.max])
-                }else if(d.attribute == 'Temp'){
-                    y.domain([TempDomain.min, TempDomain.max])
-                }else if(d.attribute == 'NewIce'){
-                    y.domain([newIcePercentageDomain.min, newIcePercentageDomain.max])
-                }else if(d.attribute == 'Ice'){
-                    y.domain([TotalIcePercentageDomain.min, TotalIcePercentageDomain.max])
-                }
-                // console.log(h, y(d.value), d.attribute, d.value)
-                return h - y(d.value); })
-                .on('mouseover', tool_tip.show)
-                .on('mouseout', tool_tip.hide);
+    svg.append('g')
+        .call(yAxis)
+        .attr("transform", "translate("+(1)+",0)")
+        .selectAll("text")	  
+        // .style("font-size", '1em')          
+        .attr("transform", "rotate(-45)");
 
     
+    var tool_tip = d3.tip()
+    .attr("class", "d3-tip")
+    .direction('e')
+    .html(function(d) { return `
+    Attrbute: ${d.attribute} <br> 
+    Value: ${d.value}`});
+svg.call(tool_tip);
+
+    for(let j = 0; j<data.length; j++){
+        // let y = d3.scaleLinear().range([(j+1)*((h-margin.top)/3), j*(h-margin.top)/3])
+
+        console.log((j+1)*((h-margin.top)/data.length), j*((h)/data.length))       
+
+
+        let yPosition = d3.scaleLinear()
+                            .range([(((h-margin.top)/data.length)*(j+1)) + (5*j), (((h-margin.top)/data.length)*j)+(5*j)])
+        // let yPosition = d3.scaleLinear().range([j*((h-margin.top)/data.length), (j+1)*((h-margin.top)/data.length)])
+        let yHeight = d3.scaleLinear().range([((h-margin.top)/data.length), 0])
+
+        let bars = svg.append('g').selectAll('bars')
+        .data(data[j])
+        .enter()
+        .append('g')
+        .attr('class', 'g')
+        .attr("transform",function(d,i) { 
+            // console.log(d)
+            return "translate(" + x0(d.Timesteps) + ",0)"; });
+
+        // console.log(attributes)      
+
+
+        bars.selectAll("rect")
+        .data(function(d){
+            // console.log(d.attributes)
+            return d.attributes})
+        .enter().append("rect")
+        .attr("width", x1.bandwidth())
+        .attr("x", function(d,i) { 
+            // console.log(d.attribute, x1(d.attribute))
+            return x1(d.attribute); })
+        .style("fill", function(d) { return color(d.attribute) })
+        .attr("y", function(d) { 
+            if(d.attribute == 'TotalParticles'){
+                yPosition.domain([TotalParticlesDomain.min, TotalParticlesDomain.max])
+            }else if(d.attribute == 'IceVolume'){
+                yPosition.domain([iceVolumeDomain.min, iceVolumeDomain.max])
+            }else if(d.attribute == 'Temp'){
+                yPosition.domain([TempDomain.min, TempDomain.max])
+            }else if(d.attribute == 'NewIce'){
+                yPosition.domain([newIcePercentageDomain.min, newIcePercentageDomain.max])
+            }else if(d.attribute == 'Ice'){
+                yPosition.domain([TotalIcePercentageDomain.min, TotalIcePercentageDomain.max])
+            }
+            return yPosition(d.value); 
+            console.log(d.attribute, d.value, yPosition(d.value))
+            // return (h-2.7*margin.top-margin.bottom) - j*((h+margin.top)/data.length)
+        })
+        .attr("height", function(d) { 
+            
+            if(d.attribute == 'TotalParticles'){
+                yHeight.domain([TotalParticlesDomain.min, TotalParticlesDomain.max])
+            }else if(d.attribute == 'IceVolume'){
+                yHeight.domain([iceVolumeDomain.min, iceVolumeDomain.max])
+            }else if(d.attribute == 'Temp'){
+                yHeight.domain([TempDomain.min, TempDomain.max])
+            }else if(d.attribute == 'NewIce'){
+                yHeight.domain([newIcePercentageDomain.min, newIcePercentageDomain.max])
+            }else if(d.attribute == 'Ice'){
+                yHeight.domain([TotalIcePercentageDomain.min, TotalIcePercentageDomain.max])
+            }
+            return ((h-10)/data.length) - yHeight(d.value); })
+            .on('mouseover', tool_tip.show)
+            .on('mouseout', tool_tip.hide);
+
+            }    
 
 }
-
-
-
-// let x = d3.scaleLinear()
-//                     .domain(d3.extent(time))
-//                     .range([margin.left+margin.right+2, w])
-
-//     svg.append('g')
-//         .attr('transform', "translate(0," + h * 0.95 + ")")
-//         .call(d3.axisBottom(x))
-
-//     let y = d3.scaleBand()
-//         .domain(["Contrails 1", "Contrails 2", "Contrails 3"])
-//         .range([0, h])
-//     let yAxis = d3.axisLeft()
-//         .scale(y)
-
-//     svg.append('g')
-//         .call(yAxis)
-//         .attr("transform", "translate("+(margin.left+margin.right+2)+",0)")
-//         .selectAll("text")	  
-//         // .style("font-size", '1em')          
-//         .attr("transform", "rotate(-45)");

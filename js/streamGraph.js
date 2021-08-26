@@ -30,7 +30,7 @@ function createStreamGraph(data){
         .call(d3.axisBottom(x))
 
         let yScale = d3.scaleBand()
-        .domain(["Contrails 1", "Contrails 2", "Contrails 3"])
+        .domain(["Contrails 3", "Contrails 2", "Contrails 1"])
         .range([0, h])
         let yAxis = d3.axisLeft()
             .scale(yScale)
