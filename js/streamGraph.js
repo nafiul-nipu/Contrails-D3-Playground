@@ -85,7 +85,9 @@ function createStreamGraph(data){
 
         //stack the data?
         var stackedData = d3.stack()
-        .offset(d3.stackOffsetSilhouette)
+        // .offset(d3.stackOffsetSilhouette)
+        .offset(d3.stackOffsetWiggle)
+        .order(d3.stackOrderInsideOut)
         .keys(attributes)
         (data[j])
     
@@ -97,6 +99,7 @@ function createStreamGraph(data){
             return x(d.data.Timesteps); })
         .y0(function(d) { return y(d[0]); })
         .y1(function(d) { return y(d[1]); })
+        .curve(d3.curveBasis)
 
         // Show the areas
         // console.log(stackedData)
@@ -105,7 +108,7 @@ function createStreamGraph(data){
         .data(stackedData)
         .enter()
         .append("path")
-        .attr("class", "myArea")
+        .attr("class", function(d){return `${d.key}`})
         .attr("id", `contrails${j}`)
         .style("fill", function(d) { return color(d.key); })
         .attr("d", area)
