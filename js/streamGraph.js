@@ -102,7 +102,7 @@ function createStreamGraph(data){
         .curve(d3.curveBasis)
 
         // Show the areas
-        console.log(stackedData)
+        // console.log(stackedData)
         svg
         .selectAll("mylayers")
         .data(stackedData)
