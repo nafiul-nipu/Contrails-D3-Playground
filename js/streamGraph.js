@@ -78,7 +78,7 @@ function createStreamGraph(data){
         
         // console.log((j+1)*((h-10)/3), j*(h-10)/3)
         var y = d3.scaleLinear()
-                .domain([-2300, 2000])
+                .domain([-2300, 2300])
                 .range([(j+1)*((h-10)/3), j*(h-10)/3 ]);
 
    
@@ -102,7 +102,7 @@ function createStreamGraph(data){
         .curve(d3.curveBasis)
 
         // Show the areas
-        // console.log(stackedData)
+        console.log(stackedData)
         svg
         .selectAll("mylayers")
         .data(stackedData)
