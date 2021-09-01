@@ -51,10 +51,10 @@ function createMultipleBars(files){
      let windowHeight = window.innerHeight;
     //  let margin = 50;
  
-     let width = 500
-    //  d3.select('#bar-chart').node().clientWidth;
-     let height = 120
-    //   (windowHeight/2) - 70    
+     // let width = 500
+    let width = d3.select('#bar-chart').node().clientWidth;
+    //  let height = 120
+    let height =   (windowHeight/2) - 70  
 
      let margin = {top:20, right:20, bottom:30, left:40}
 
