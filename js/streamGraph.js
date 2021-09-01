@@ -3,10 +3,12 @@ function createStreamGraph(data){
     let windowHeight = window.innerHeight;
     // let margin = 50;
 
-    let width = d3.select('#streamgraph').node().clientWidth;
-    let height = (windowHeight/2) - 50
+    let width = 500
+    //  d3.select('#bar-chart').node().clientWidth;
+     let height = 120
+    //   (windowHeight/2) - 70  
 
-    let margin = {top:20, right:20, bottom:0, left:10}
+    let margin = {top:20, right:20, bottom:30, left:40}
 
     let w = width - margin.left - margin.right
     
@@ -24,9 +26,9 @@ function createStreamGraph(data){
 
     var x = d3.scaleLinear()
             .domain(d3.extent(time))
-            .range([margin.left+margin.right+2, w])
+            .range([2, w])
     svg.append('g')
-        .attr('transform', "translate(0," + h * 0.95 + ")")
+        .attr('transform', "translate(0," + h + ")")
         .call(d3.axisBottom(x))
 
         let yScale = d3.scaleBand()
@@ -37,7 +39,7 @@ function createStreamGraph(data){
 
         svg.append('g')
         .call(yAxis)
-        .attr("transform", "translate("+(margin.left+margin.right+2)+",0)")
+        .attr("transform", "translate("+(1)+",0)")
         .selectAll("text")	  
         // .style("font-size", '1em')          
         .attr("transform", "rotate(-45)");
