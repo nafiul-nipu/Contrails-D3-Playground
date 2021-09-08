@@ -14,9 +14,19 @@ files.forEach(url => {
 
 // let promise = d3.csv('data/contrails 1.csv')
 Promise.all(promises).then(function(files){
-    
-    // yVal.domain(d3.extent(data.length))
-    // console.log(data)
+    // console.log(files)
+    files.forEach(file => {
+        file.forEach(row => {
+            row.Timesteps = +row.Timesteps
+            row.TotalParticles = +row.TotalParticles
+            row.Ice = +row.Ice 
+            row.NewIce = +row.NewIce 
+            row.IceVolume = +row.IceVolume 
+            row.Temp = +row.Temp
+        })
+    })
+
+    // console.log(files)
     createMultipleBars(files)
     createStreamGraph(files)
 });

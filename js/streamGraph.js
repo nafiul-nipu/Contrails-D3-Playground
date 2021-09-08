@@ -1,4 +1,5 @@
 function createStreamGraph(data){
+    // console.log(TotalParticlesDomain)
     // console.log(time)
     let windowHeight = window.innerHeight;
     // let margin = 50;
@@ -75,12 +76,45 @@ function createStreamGraph(data){
     d3.selectAll(".myArea").style("opacity", 1).style("stroke", "none")
     }
 
+    // console.log(stTemp,stTotalPar,stTotalIce,stNewIce,sticeVol)
+
+    let stTempScale = d3.scaleLinear()
+        .range([0,250])
+    let stTotalParScale = d3.scaleLinear()
+        .range([0,250])
+    let stTotalIceScale = d3.scaleLinear()
+        .range([0,250])
+    let stNewIceScale = d3.scaleLinear()
+        .range([0,250])
+    let sticeVolScale = d3.scaleLinear()
+        .range([0,250])
+
+    data.forEach((contrail, i) => {
+        // console.log(stTemp[i].min, stTemp[i].max)
+        
+        stTempScale.domain([stTemp[i].min, stTemp[i].max])
+        stTotalParScale.domain([stTotalPar[i].min, stTotalPar[i].max])
+        stTotalIceScale.domain([stTotalIce[i].min, stTotalIce[i].max])
+        stNewIceScale.domain([stNewIce[i].min, stNewIce[i].max])
+        sticeVolScale.domain([sticeVol[i].min, sticeVol[i].max])
+
+        contrail.forEach((row, i) => {
+            // console.log(stTotalParScale(row.TotalParticles))
+
+            row.TotalParticles = stTotalParScale(row.TotalParticles)
+            row.Ice = stTotalIceScale(row.Ice )
+            row.NewIce = stNewIceScale(row.NewIce )
+            row.IceVolume = sticeVolScale(row.IceVolume) 
+            row.Temp = stTempScale(row.Temp)
+        })
+    })
+
     for (let j = 0; j < data.length; j++){
         // console.log(h)
         
         // console.log((j+1)*((h-10)/3), j*(h-10)/3)
         var y = d3.scaleLinear()
-                .domain([-2300, 2300])
+                .domain([-600, 600])
                 .range([(j+1)*((h-10)/3), j*(h-10)/3 ]);
 
    
@@ -104,7 +138,7 @@ function createStreamGraph(data){
         .curve(d3.curveBasis)
 
         // Show the areas
-        // console.log(stackedData)
+        console.log(stackedData)
         svg
         .selectAll("mylayers")
         .data(stackedData)

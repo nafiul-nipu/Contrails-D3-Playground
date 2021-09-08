@@ -1,3 +1,8 @@
+let stTemp = []
+let stTotalPar = []
+let stTotalIce = []
+let stNewIce = []
+let sticeVol = []
 function createMultipleBars(files){   
 
     let data = []
@@ -6,8 +11,15 @@ function createMultipleBars(files){
     let TotalIcePercentageDomain = {}
     let newIcePercentageDomain = {}
     let iceVolumeDomain = {}
+    
     files.forEach((value, i) =>{
         data[i] = []
+
+        stTemp[i] = {}
+        stTotalPar[i] = {}
+        stTotalIce[i] = {}
+        stNewIce[i] = {}
+        sticeVol[i] = {}
         value.forEach(d=>{
             data[i].push({
                 Timesteps: parseFloat(d["Timesteps"]),
@@ -23,9 +35,9 @@ function createMultipleBars(files){
                     value: parseFloat(d["Temp"])},
                     
                     {attribute:"Ice",
-                    value: parseFloat(d["TotalIcePercentage"])},
+                    value: parseFloat(d["Ice"])},
                     {attribute:"NewIce",
-                    value: parseFloat(d["newIcePercentage"])}
+                    value: parseFloat(d["NewIce"])}
                 ]
                 
             });
@@ -35,14 +47,33 @@ function createMultipleBars(files){
             TotalParticlesDomain.min = Math.min(TotalParticlesDomain.min || Infinity, parseInt(d['TotalParticles']));
             TotalParticlesDomain.max = Math.max(TotalParticlesDomain.max || -Infinity, parseInt(d['TotalParticles']));
 
-            TotalIcePercentageDomain.min = Math.min(TotalIcePercentageDomain.min || Infinity, parseFloat(d['TotalIcePercentage']));
-            TotalIcePercentageDomain.max = Math.max(TotalIcePercentageDomain.max || -Infinity, parseFloat(d['TotalIcePercentage']));
+            TotalIcePercentageDomain.min = Math.min(TotalIcePercentageDomain.min || Infinity, parseFloat(d['Ice']));
+            TotalIcePercentageDomain.max = Math.max(TotalIcePercentageDomain.max || -Infinity, parseFloat(d['Ice']));
 
-            newIcePercentageDomain.min = Math.min(newIcePercentageDomain.min || Infinity, parseFloat(d['newIcePercentage']));
-            newIcePercentageDomain.max = Math.max(newIcePercentageDomain.max || -Infinity, parseFloat(d['newIcePercentage']));
+            newIcePercentageDomain.min = Math.min(newIcePercentageDomain.min || Infinity, parseFloat(d['NewIce']));
+            newIcePercentageDomain.max = Math.max(newIcePercentageDomain.max || -Infinity, parseFloat(d['NewIce']));
 
             iceVolumeDomain.min = Math.min(iceVolumeDomain.min || Infinity, parseFloat(d['IceVolume']));
             iceVolumeDomain.max = Math.max(iceVolumeDomain.max || -Infinity, parseFloat(d['IceVolume']));
+
+
+
+
+
+            stTemp[i].min = Math.min(stTemp[i].min || Infinity, parseFloat(d['Temp']));
+            stTemp[i].max = Math.max(stTemp[i].max || -Infinity, parseFloat(d['Temp']));
+
+            stTotalPar[i].min = Math.min(stTotalPar[i].min || Infinity, parseInt(d['TotalParticles']));
+            stTotalPar[i].max = Math.max(stTotalPar[i].max || -Infinity, parseInt(d['TotalParticles']));
+
+            stTotalIce[i].min = Math.min(stTotalIce[i].min || Infinity, parseFloat(d['Ice']));
+            stTotalIce[i].max = Math.max(stTotalIce[i].max || -Infinity, parseFloat(d['Ice']));
+
+            stNewIce[i].min = Math.min(stNewIce[i].min || Infinity, parseFloat(d['NewIce']));
+            stNewIce[i].max = Math.max(stNewIce[i].max || -Infinity, parseFloat(d['NewIce']));
+
+            sticeVol[i].min = Math.min(sticeVol[i].min || Infinity, parseFloat(d['IceVolume']));
+            sticeVol[i].max = Math.max(sticeVol[i].max || -Infinity, parseFloat(d['IceVolume']));
         });
     });
 
