@@ -114,7 +114,7 @@ function createStreamGraph(data){
         
         // console.log((j+1)*((h-10)/3), j*(h-10)/3)
         var y = d3.scaleLinear()
-                .domain([-600, 600])
+                .domain([-550, 550])
                 .range([(j+1)*((h-10)/3), j*(h-10)/3 ]);
 
    
