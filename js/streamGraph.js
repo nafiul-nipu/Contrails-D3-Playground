@@ -79,15 +79,15 @@ function createStreamGraph(data){
     // console.log(stTemp,stTotalPar,stTotalIce,stNewIce,sticeVol)
 
     let stTempScale = d3.scaleLinear()
-        .range([0,250])
+        .range([0,100])
     let stTotalParScale = d3.scaleLinear()
-        .range([0,250])
+        .range([0,100])
     let stTotalIceScale = d3.scaleLinear()
-        .range([0,250])
+        .range([0,100])
     let stNewIceScale = d3.scaleLinear()
-        .range([0,250])
+        .range([0,100])
     let sticeVolScale = d3.scaleLinear()
-        .range([0,250])
+        .range([0,100])
 
     data.forEach((contrail, i) => {
         // console.log(stTemp[i].min, stTemp[i].max)
@@ -114,16 +114,17 @@ function createStreamGraph(data){
         
         // console.log((j+1)*((h-10)/3), j*(h-10)/3)
         var y = d3.scaleLinear()
-                .domain([-550, 550])
+                .domain([0, 450])
                 .range([(j+1)*((h-10)/3), j*(h-10)/3 ]);
 
    
 
         //stack the data?
         var stackedData = d3.stack()
+        // .offset(d3.stackOffsetExpand)
         // .offset(d3.stackOffsetSilhouette)
-        .offset(d3.stackOffsetWiggle)
-        .order(d3.stackOrderInsideOut)
+        // .offset(d3.stackOffsetWiggle)
+        // .order(d3.stackOrderInsideOut)
         .keys(attributes)
         (data[j])
     
@@ -135,7 +136,7 @@ function createStreamGraph(data){
             return x(d.data.Timesteps); })
         .y0(function(d) { return y(d[0]); })
         .y1(function(d) { return y(d[1]); })
-        .curve(d3.curveBasis)
+        // .curve(d3.curveBasis)
 
         // Show the areas
         console.log(stackedData)
