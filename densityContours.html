@@ -24,7 +24,7 @@ var x = d3.scaleLinear()
 var y = d3.scaleLinear()
     .rangeRound([height - margin.bottom, margin.top]);
 
-d3.tsv("data/faithful.tsv", function(d) {
+d3.csv("data/0.2.csv", function(d) {
   d.eruptions = +d.eruptions;
   d.waiting = +d.waiting;
   return d;
