@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="density.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <canvas id="a-canvas"></canvas>
+</body>
+
+<script>
+    let comma = d3.format(',');
+
+    let rand = d3.randomNormal(0, 0.75) // Sample coordinates from a normal distribution
+
+    let maxPoints = 1e6
+
+    let Y = Float64Array.from({ length: maxPoints }, rand)
+
+    let X = Float64Array.from({ length: maxPoints }, rand)
+
+    numPoints = maxPoints;
+    nBins = 400
+
+    let ys = Y.subarray(0, numPoints)
+
+    let xs = X.subarray(0, numPoints)
+
+    // Create and configure a density estimator for our data
+    let density = pointDensity(nBins, nBins)
+    .x(d => d)
+    .y((d, i) => ys[i])
+    // Specify the x and y domains that we'd like to plot
+    .xDomain([-2.5, 2.5])
+    .yDomain([-2.5, 2.5])
+
+    // Create and configure a plotter with our density estimator and a color scale
+  let plot = densityPlot(density)
+    .size([500, 500])
+    .background('#fff')
+    // Customize the color scale to linearly map bin counts to an blue color scale.
+    .color(buf =>
+      d3.scaleSequential(
+        d3.extent(buf),
+        // cacheInterpolator speeds up colorization by returning cached {r, g, b, opacity} objects
+        cacheInterpolator(d3.interpolateBlues)
+      )
+    );
+
+    plot(xs)
+</script>
+</html>
