@@ -1,0 +1,71 @@
+#chart text {
+    fill: white;
+    font: 10px Helvetica;
+    text-anchor: end;
+  }
+  line {
+    /*stroke: black;*/
+  }
+  line:first-child.notify,
+  line:first-child.precheck,
+  line:first-child.recover {
+    stroke-dasharray: 5, 5;
+  }
+  line:first-child {
+    marker-end: url(#markerArrow);
+  }
+  line:first-child.reverse {
+    marker-end: none;
+    marker-start: url(#markerArrowReverse);
+  }
+  line:first-child.notify {
+    marker-end: url(#markerSquare);
+  }
+  line:first-child.notify.reverse {
+    marker-end: none;
+    marker-start: url(#markerSquareReverse);
+  }
+  line:first-child.recover {
+    marker-end: url(#markerCircle);
+  }
+  line:first-child.recover.reverse {
+    marker-end: none;
+    marker-start: url(#markerCircleReverse);
+  }
+  
+  .single > g,
+  .single > line,
+  .single > path,
+  .hull > rect,
+  .hull > text {
+    display:none;
+  }
+  
+  .d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+  }
+  
+  /* Creates a small triangle extender for the tooltip */
+  .d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+  }
+  
+  /* Style northward tooltips differently */
+  .d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+  }
