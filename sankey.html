@@ -201,81 +201,552 @@ function dragmove(d) {
 
 
 function getData() {
-    return {
-        "nodes": [{
-        "node": 0,
-        "name": "Name0"
-    }, {
-        "node": 1,
-        "name": "Name1"
-    }, {
-        "node": 2,
-        "name": "Action2"
-    }, {
-        "node": 3,
-        "name": "Name3"
-    }, {
-        "node": 4,
-        "name": "Name4"
-    }, {
-        "node": 5,
-        "name": "Action5"
-    }, {
-        "node": 6,
-        "name": "Action6"
-    }, {
-        "node": 7,
-        "name": "Action7"
-    }, {
-        "node": 8,
-        "name": "Action8"
-    }],
-        "links": [{
-        "source": 0,
-        "target": 6,
-        "value": 25,
-		"id": "name0"
-    }, {
-        "source": 1,
-        "target": 2,
-        "value": 25,
-		"id": "Name1"
-    }, {
-        "source": 2,
-        "target": 5,
-        "value": 25,
-		"id": "Name1"
-    },  {
-        "source": 3,
-        "target": 6,
-        "value": 25,
-		"id": "Name3"
-    },   {
-        "source": 6,
-        "target": 7,
-        "value": 25,
-		"id": "name0"
-    }, {
-        "source": 4,
-        "target": 7,
-        "value": 25,
-		"id": "Name4"
-    }, {
-        "source": 5,
-        "target": 7,
-        "value": 25,
-		"id": "Name1"
-    }, {
-        "source": 6,
-        "target": 7,
-        "value": 25,
-		"id": "Name3", 
-	}, {
-        "source": 7,
-        "target": 8,
-        "value": 25,
-		"id": "Name3"
-    }]};
+        return {
+    "links": [
+        {
+            "id": "name0",
+            "source": 0,
+            "target": 6,
+            "value": 25
+        },
+        {
+            "id": "name0",
+            "source": 0,
+            "target": 7,
+            "value": 25
+        },
+        {
+            "id": "name1",
+            "source": 1,
+            "target": 6,
+            "value": 25
+        },
+        {
+            "id": "name1",
+            "source": 1,
+            "target": 7,
+            "value": 25
+        },
+        {
+            "id": "name2",
+            "source": 2,
+            "target": 7,
+            "value": 25
+        },
+        {
+            "id": "name3",
+            "source": 3,
+            "target": 7,
+            "value": 25
+        },
+        {
+            "id": "name4",
+            "source": 4,
+            "target": 7,
+            "value": 25
+        },
+        {
+            "id": "name5",
+            "source": 5,
+            "target": 7,
+            "value": 25
+        },
+        {
+            "id": "name6",
+            "source": 6,
+            "target": 12,
+            "value": 25
+        },
+        {
+            "id": "name6",
+            "source": 6,
+            "target": 13,
+            "value": 25
+        },
+        {
+            "id": "name7",
+            "source": 7,
+            "target": 12,
+            "value": 25
+        },
+        {
+            "id": "name7",
+            "source": 7,
+            "target": 13,
+            "value": 25
+        },
+        {
+            "id": "name8",
+            "source": 8,
+            "target": 13,
+            "value": 25
+        },
+        {
+            "id": "name9",
+            "source": 9,
+            "target": 13,
+            "value": 25
+        },
+        {
+            "id": "name10",
+            "source": 10,
+            "target": 13,
+            "value": 25
+        },
+        {
+            "id": "name11",
+            "source": 11,
+            "target": 13,
+            "value": 25
+        },
+        {
+            "id": "name12",
+            "source": 12,
+            "target": 14,
+            "value": 25
+        },
+        {
+            "id": "name12",
+            "source": 12,
+            "target": 15,
+            "value": 25
+        },
+        {
+            "id": "name13",
+            "source": 13,
+            "target": 14,
+            "value": 25
+        },
+        {
+            "id": "name13",
+            "source": 13,
+            "target": 15,
+            "value": 25
+        },
+        {
+            "id": "name14",
+            "source": 14,
+            "target": 17,
+            "value": 25
+        },
+        {
+            "id": "name15",
+            "source": 15,
+            "target": 17,
+            "value": 25
+        },
+        {
+            "id": "name15",
+            "source": 15,
+            "target": 18,
+            "value": 25
+        },
+        {
+            "id": "name16",
+            "source": 16,
+            "target": 18,
+            "value": 25
+        },
+        {
+            "id": "name17",
+            "source": 17,
+            "target": 22,
+            "value": 25
+        },
+        {
+            "id": "name17",
+            "source": 17,
+            "target": 23,
+            "value": 25
+        },
+        {
+            "id": "name18",
+            "source": 18,
+            "target": 22,
+            "value": 25
+        },
+        {
+            "id": "name18",
+            "source": 18,
+            "target": 23,
+            "value": 25
+        },
+        {
+            "id": "name19",
+            "source": 19,
+            "target": 23,
+            "value": 25
+        },
+        {
+            "id": "name20",
+            "source": 20,
+            "target": 23,
+            "value": 25
+        },
+        {
+            "id": "name21",
+            "source": 21,
+            "target": 23,
+            "value": 25
+        },
+        {
+            "id": "name22",
+            "source": 22,
+            "target": 26,
+            "value": 25
+        },
+        {
+            "id": "name23",
+            "source": 23,
+            "target": 26,
+            "value": 25
+        },
+        {
+            "id": "name23",
+            "source": 23,
+            "target": 27,
+            "value": 25
+        },
+        {
+            "id": "name24",
+            "source": 24,
+            "target": 27,
+            "value": 25
+        },
+        {
+            "id": "name25",
+            "source": 25,
+            "target": 27,
+            "value": 25
+        },
+        {
+            "id": "name26",
+            "source": 26,
+            "target": 31,
+            "value": 25
+        },
+        {
+            "id": "name26",
+            "source": 26,
+            "target": 32,
+            "value": 25
+        },
+        {
+            "id": "name27",
+            "source": 27,
+            "target": 31,
+            "value": 25
+        },
+        {
+            "id": "name27",
+            "source": 27,
+            "target": 32,
+            "value": 25
+        },
+        {
+            "id": "name28",
+            "source": 28,
+            "target": 32,
+            "value": 25
+        },
+        {
+            "id": "name29",
+            "source": 29,
+            "target": 32,
+            "value": 25
+        },
+        {
+            "id": "name30",
+            "source": 30,
+            "target": 32,
+            "value": 25
+        },
+        {
+            "id": "name31",
+            "source": 31,
+            "target": 34,
+            "value": 25
+        },
+        {
+            "id": "name32",
+            "source": 32,
+            "target": 34,
+            "value": 25
+        },
+        {
+            "id": "name32",
+            "source": 32,
+            "target": 35,
+            "value": 25
+        },
+        {
+            "id": "name33",
+            "source": 33,
+            "target": 35,
+            "value": 25
+        },
+        {
+            "id": "name34",
+            "source": 34,
+            "target": 38,
+            "value": 25
+        },
+        {
+            "id": "name34",
+            "source": 34,
+            "target": 39,
+            "value": 25
+        },
+        {
+            "id": "name35",
+            "source": 35,
+            "target": 38,
+            "value": 25
+        },
+        {
+            "id": "name35",
+            "source": 35,
+            "target": 39,
+            "value": 25
+        },
+        {
+            "id": "name36",
+            "source": 36,
+            "target": 39,
+            "value": 25
+        },
+        {
+            "id": "name37",
+            "source": 37,
+            "target": 39,
+            "value": 25
+        },
+        {
+            "id": "name38",
+            "source": 38,
+            "target": 42,
+            "value": 25
+        },
+        {
+            "id": "name39",
+            "source": 39,
+            "target": 42,
+            "value": 25
+        },
+        {
+            "id": "name39",
+            "source": 39,
+            "target": 43,
+            "value": 25
+        },
+        {
+            "id": "name40",
+            "source": 40,
+            "target": 43,
+            "value": 25
+        },
+        {
+            "id": "name41",
+            "source": 41,
+            "target": 43,
+            "value": 25
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Name0",
+            "node": 0
+        },
+        {
+            "name": "Name1",
+            "node": 1
+        },
+        {
+            "name": "Name2",
+            "node": 2
+        },
+        {
+            "name": "Name3",
+            "node": 3
+        },
+        {
+            "name": "Name4",
+            "node": 4
+        },
+        {
+            "name": "Name5",
+            "node": 5
+        },
+        {
+            "name": "Name6",
+            "node": 6
+        },
+        {
+            "name": "Name7",
+            "node": 7
+        },
+        {
+            "name": "Name8",
+            "node": 8
+        },
+        {
+            "name": "Name9",
+            "node": 9
+        },
+        {
+            "name": "Name10",
+            "node": 10
+        },
+        {
+            "name": "Name11",
+            "node": 11
+        },
+        {
+            "name": "Name12",
+            "node": 12
+        },
+        {
+            "name": "Name13",
+            "node": 13
+        },
+        {
+            "name": "Name14",
+            "node": 14
+        },
+        {
+            "name": "Name15",
+            "node": 15
+        },
+        {
+            "name": "Name16",
+            "node": 16
+        },
+        {
+            "name": "Name17",
+            "node": 17
+        },
+        {
+            "name": "Name18",
+            "node": 18
+        },
+        {
+            "name": "Name19",
+            "node": 19
+        },
+        {
+            "name": "Name20",
+            "node": 20
+        },
+        {
+            "name": "Name21",
+            "node": 21
+        },
+        {
+            "name": "Name22",
+            "node": 22
+        },
+        {
+            "name": "Name23",
+            "node": 23
+        },
+        {
+            "name": "Name24",
+            "node": 24
+        },
+        {
+            "name": "Name25",
+            "node": 25
+        },
+        {
+            "name": "Name26",
+            "node": 26
+        },
+        {
+            "name": "Name27",
+            "node": 27
+        },
+        {
+            "name": "Name28",
+            "node": 28
+        },
+        {
+            "name": "Name29",
+            "node": 29
+        },
+        {
+            "name": "Name30",
+            "node": 30
+        },
+        {
+            "name": "Name31",
+            "node": 31
+        },
+        {
+            "name": "Name32",
+            "node": 32
+        },
+        {
+            "name": "Name33",
+            "node": 33
+        },
+        {
+            "name": "Name34",
+            "node": 34
+        },
+        {
+            "name": "Name35",
+            "node": 35
+        },
+        {
+            "name": "Name36",
+            "node": 36
+        },
+        {
+            "name": "Name37",
+            "node": 37
+        },
+        {
+            "name": "Name38",
+            "node": 38
+        },
+        {
+            "name": "Name39",
+            "node": 39
+        },
+        {
+            "name": "Name40",
+            "node": 40
+        },
+        {
+            "name": "Name41",
+            "node": 41
+        },
+        {
+            "name": "Name42",
+            "node": 42
+        },
+        {
+            "name": "Name43",
+            "node": 43
+        },
+        {
+            "name": "Name44",
+            "node": 44
+        },
+        {
+            "name": "Name45",
+            "node": 45
+        },
+        {
+            "name": "Name46",
+            "node": 46
+        },
+        {
+            "name": "Name47",
+            "node": 47
+        }
+    ]
+}
 }
 
     // From sankey, but keep indices as indices

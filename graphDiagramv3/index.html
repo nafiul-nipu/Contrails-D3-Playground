@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>D3 Diagram</title>
+	<link rel="stylesheet" href="diagram.css">
+	<script src="//d3js.org/d3.v3.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js"></script>
+</head>
+<body>
+	<svg id="chart">
+		<defs>
+		  <marker id="markerSquare" markerWidth="8" markerHeight="8" refX="8" refY="4"
+		          orient="auto">
+		      <rect x="0" y="0" width="8" height="8" style="stroke: none; fill:#000000;"/>
+		  </marker>
+		  <marker id="markerSquareReverse" markerWidth="8" markerHeight="8" refX="0" refY="4"
+		          orient="auto">
+		      <rect x="0" y="0" width="8" height="8" style="stroke: none; fill:#000000;"/>
+		  </marker>
+		  <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="8" refY="4"
+		          orient="auto">
+		      <circle cx="4" cy="4" r="4" style="stroke: none; fill:#000000;"/>
+		  </marker>
+		  <marker id="markerCircleReverse" markerWidth="8" markerHeight="8" refX="0" refY="4"
+		          orient="auto">
+		      <circle cx="4" cy="4" r="4" style="stroke: none; fill:#000000;"/>
+		  </marker>
+		  <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="8" refY="7"
+		          orient="auto">
+		      <path d="M2,2 L2,13 L8,7 L2,2" />
+		  </marker>
+		  <marker id="markerArrowReverse" markerWidth="13" markerHeight="13" refX="2" refY="7"
+		          orient="auto">
+		      <path d="M2,7 L8,13 L8,2 L2,7" />
+		  </marker>
+		</defs>
+	</svg>
+	<script src="./diagram.js"></script>
+</body>
+</html>
