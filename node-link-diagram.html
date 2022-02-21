@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .node {
+        stroke: #fff;
+        stroke-width: 1.5px;
+    }
+    .link {
+        stroke: #999;
+        stroke-opacity: .6;
+    }
+    </style>
+</head>
+<body>
+    
+</body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+    var width = window.innerWidth,
+    height = window.innerHeight;
+    var force = d3.layout.force()
+        .size([width, height])
+        .charge(-400)
+        .linkDistance(40)
+        .on("tick", tick);
+    var drag = force.drag()
+        .on("dragend", dragend)
+        .on("dragstart", dragstart);
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+    var link = svg.selectAll(".link"),
+        node = svg.selectAll(".node");
+    graph = {
+    "nodes" :[
+        {"x": 0, "y": 20, "r": 5.342929720575784},
+        {"x": 0, "y": 79.36507936507935, "r": 10},
+        {"x": 0, "y": 138.7301587301587, "r": 5.254022015241321},
+        {"x": 0, "y": 198.09523809523807, "r": 5.02116850127011},
+        {"x": 0, "y": 257.4603174603174, "r": 5.008467400508044},
+        {"x": 0, "y": 316.8253968253968, "r": 5},
+        {"x": 63.30275229357798, "y": 20, "r": 5.2395209580838324},
+        {"x": 63.30275229357798, "y": 79.36507936507935, "r": 10},
+        {"x": 63.30275229357798, "y": 138.7301587301587, "r": 5.014970059880239},
+        {"x": 63.30275229357798, "y": 198.09523809523807, "r": 5.01122754491018},
+        {"x": 63.30275229357798, "y": 257.4603174603174, "r": 5.003742514970059},
+        {"x": 63.30275229357798, "y": 316.8253968253968, "r": 5},
+        {"x": 126.60550458715596, "y": 20, "r": 5},
+        {"x": 126.60550458715596, "y": 198.09523809523807, "r": 10},
+        {"x": 189.90825688073394, "y": 20, "r": 5.121168923734854},
+        {"x": 189.90825688073394, "y": 138.7301587301587, "r": 10},
+        {"x": 189.90825688073394, "y": 257.4603174603174, "r": 5},
+        {"x": 253.21100917431193, "y": 20, "r": 5.199849170437406},
+        {"x": 253.21100917431193, "y": 91.23809523809523, "r": 10},
+        {"x": 253.21100917431193, "y": 162.47619047619045, "r": 5.154600301659125},
+        {"x": 253.21100917431193, "y": 233.7142857142857, "r": 5.015082956259427},
+        {"x": 253.21100917431193, "y": 304.9523809523809, "r": 5},
+        {"x": 316.51376146788994, "y": 20, "r": 5.0876552227903575},
+        {"x": 316.51376146788994, "y": 109.04761904761904, "r": 10},
+        {"x": 316.51376146788994, "y": 198.09523809523807, "r": 5.018261504747992},
+        {"x": 316.51376146788994, "y": 287.1428571428571, "r": 5},
+        {"x": 379.8165137614679, "y": 20, "r": 5.242356450410141},
+        {"x": 379.8165137614679, "y": 91.23809523809523, "r": 10},
+        {"x": 379.8165137614679, "y": 162.47619047619045, "r": 5.007457121551082},
+        {"x": 379.8165137614679, "y": 233.7142857142857, "r": 5},
+        {"x": 379.8165137614679, "y": 304.9523809523809, "r": 5},
+        {"x": 443.11926605504584, "y": 20, "r": 5.127923976608187},
+        {"x": 443.11926605504584, "y": 138.7301587301587, "r": 10},
+        {"x": 443.11926605504584, "y": 257.4603174603174, "r": 5},
+        {"x": 506.42201834862385, "y": 20, "r": 5.2234432234432235},
+        {"x": 506.42201834862385, "y": 109.04761904761904, "r": 10},
+        {"x": 506.42201834862385, "y": 198.09523809523807, "r": 5.051282051282051},
+        {"x": 506.42201834862385, "y": 287.1428571428571, "r": 5},
+        {"x": 569.7247706422019, "y": 20, "r": 5.098730606488011},
+        {"x": 569.7247706422019, "y": 109.04761904761904, "r": 10},
+        {"x": 569.7247706422019, "y": 198.09523809523807, "r": 5.003526093088857},
+        {"x": 569.7247706422019, "y": 287.1428571428571, "r": 5},
+        {"x": 633.0275229357799, "y": 20, "r": 5.281299524564184},
+        {"x": 633.0275229357799, "y": 79.36507936507935, "r": 10},
+        {"x": 633.0275229357799, "y": 138.7301587301587, "r": 5.130744849445325},
+        {"x": 633.0275229357799, "y": 198.09523809523807, "r": 5.07527733755943},
+        {"x": 633.0275229357799, "y": 257.4603174603174, "r": 5.003961965134707},
+        {"x": 633.0275229357799, "y": 316.8253968253968, "r": 5}
+    ],
+    "links": [
+        {"source": 1, "target": 7},
+        {"source": 1, "target": 8},
+        {"source": 2, "target": 7},
+        {"source": 2, "target": 8},
+        {"source": 3, "target": 8},
+        {"source": 4, "target": 8},
+        {"source": 5, "target": 8},
+        {"source": 6, "target": 8},
+        {"source": 7, "target": 13},
+        {"source": 7, "target": 14},
+        {"source": 8, "target": 13},
+        {"source": 8, "target": 14},
+        {"source": 9, "target": 14},
+        {"source": 10, "target": 14},
+        {"source": 11, "target": 14},
+        {"source": 12, "target": 14},
+        {"source": 13, "target": 15},
+        {"source": 13, "target": 16},
+        {"source": 14, "target": 15},
+        {"source": 14, "target": 16},
+        {"source": 15, "target": 18},
+        {"source": 16, "target": 18},
+        {"source": 16, "target": 19},
+        {"source": 17, "target": 19},
+        {"source": 18, "target": 23},
+        {"source": 18, "target": 24},
+        {"source": 19, "target": 23},
+        {"source": 19, "target": 24},
+        {"source": 20, "target": 24},
+        {"source": 21, "target": 24},
+        {"source": 22, "target": 24},
+        {"source": 23, "target": 27},
+        {"source": 24, "target": 27},
+        {"source": 24, "target": 28},
+        {"source": 25, "target": 28},
+        {"source": 26, "target": 28},
+        {"source": 27, "target": 32},
+        {"source": 27, "target": 33},
+        {"source": 28, "target": 32},
+        {"source": 28, "target": 33},
+        {"source": 29, "target": 33},
+        {"source": 30, "target": 33},
+        {"source": 31, "target": 33},
+        {"source": 32, "target": 35},
+        {"source": 33, "target": 35},
+        {"source": 33, "target": 36},
+        {"source": 34, "target": 36},
+        {"source": 35, "target": 39},
+        {"source": 35, "target": 40},
+        {"source": 36, "target": 39},
+        {"source": 36, "target": 40},
+        {"source": 37, "target": 40},
+        {"source": 38, "target": 40},
+        {"source": 39, "target": 43},
+        {"source": 40, "target": 43},
+        {"source": 40, "target": 44},
+        {"source": 41, "target": 44},
+        {"source": 42, "target": 44}
+    ]
+};
+
+    force.nodes(graph.nodes)
+        .links(graph.links)
+        .alpha(0)
+        .start();
+    link = link.data(graph.links)
+        .enter().append("line")
+        .attr("class", "link");
+    node = node.data(graph.nodes)
+        .enter().append("circle")
+        .attr("class", "node")
+        .attr("r", 12)
+        .on("dblclick", dblclick)
+        .call(drag);
+
+
+    function tick() {
+        link.attr("x1", function (d) {
+            return d.source.x;
+        })
+            .attr("y1", function (d) {
+            return d.source.y;
+        })
+            .attr("x2", function (d) {
+            return d.target.x;
+        })
+            .attr("y2", function (d) {
+            return d.target.y;
+        });
+        node.attr("cx", function (d) {
+            return d.x;
+        })
+            .attr("cy", function (d) {
+            return d.y;
+        });
+    }
+
+    function dblclick(d) {
+    
+    }
+
+    function dragstart(d) {
+        clone1 = JSON.parse(JSON.stringify(graph));
+    }
+    function dragend(d) {
+        clone1.nodes.forEach(function(n,i){
+            graph.nodes[i].px=n.px
+            graph.nodes[i].py=n.py
+            graph.nodes[i].x=n.x
+            graph.nodes[i].y=n.y
+        });
+    }
+</script>
+</html>
